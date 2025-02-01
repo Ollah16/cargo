@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <header class="sticky-nav">
+        <nav class="nav-container">
+            <!-- logo -->
+            <a href="index.html" class="nav__logo" aria-label="Cargo Home">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="102.672"
+                    height="32.486" viewBox="0 0 102.672 32.486">
+                    <defs>
+                        <clipPath id="a">
+                            <path d="M0-29.66H102.672V-62.146H0Z" transform="translate(0 62.146)" />
+                        </clipPath>
+                    </defs>
+                    <g transform="translate(0 62.146)">
+                        <g transform="translate(0 -62.146)" clipPath="url(#a)">
+                            <g transform="translate(0 0)">
+                                <path
+                                    d="M-14.557-7.456c-.262-2.289-1.567-3.813-4.787-3.813-3.656,0-5.44,3.1-5.44,6.641,0,3.589,1.654,6.641,5.746,6.641,2.785,0,3.916-1.257,4.526-3.365h4.744C-10.422,3-13.512,6.366-19.388,6.366c-6.615,0-10.14-5.294-10.14-10.994,0-5.653,3.526-10.994,10.1-10.994,6.615,0,9.313,4.128,9.618,8.166Z"
+                                    transform="translate(29.528 15.622)" />
+                            </g>
+                            <g transform="translate(21.054 0)">
+                                <path
+                                    d="M-20.819-.492v20.91h-4.744V17.59a7.553,7.553,0,0,1-6.267,3.366c-6.18,0-10.4-5.07-10.4-10.994S-38.01-1.031-31.83-1.031a7.552,7.552,0,0,1,6.267,3.366V-.492ZM-25.563,9.963c0-3.589-2.35-6.641-6.006-6.641-3.568,0-5.918,3.052-5.918,6.641s2.35,6.641,5.918,6.641c3.656,0,6.006-3.052,6.006-6.641"
+                                    transform="translate(42.231 1.031)" />
+                            </g>
+                            <g transform="translate(45.173 0.27)">
+                                <path
+                                    d="M-12.525-4.382A6.72,6.72,0,0,0-14.4-4.606c-4.048,0-6.267,2.378-6.267,7.583V12h-4.744V-8.913h4.744v3.365A7.281,7.281,0,0,1-14.4-9.182a4.681,4.681,0,0,1,1.871.313Z"
+                                    transform="translate(25.407 9.182)" />
+                            </g>
+                            <g transform="translate(58.12 0)">
+                                <path
+                                    d="M-20.9-20.524c0,3.5-1.044,6.012-2.916,7.627s-4.57,2.378-7.964,2.378a10.6,10.6,0,0,1-7.573-2.691,8.884,8.884,0,0,1-2.7-5.968h4.787c.262,2.243,2,4.262,5.44,4.262,3.786,0,6.093-1.661,6.093-5.609v-3.859A7.553,7.553,0,0,1-32-21.017c-6.18,0-10.4-5.07-10.4-10.994S-38.183-43-32-43a7.552,7.552,0,0,1,6.268,3.366v-2.828h4.744ZM-37.66-32.011c0,3.589,2.35,6.641,5.919,6.641,3.656,0,6.006-3.052,6.006-6.641s-2.35-6.641-6.006-6.641c-3.569,0-5.919,3.052-5.919,6.641"
+                                    transform="translate(42.403 43.005)" />
+                            </g>
+                            <g transform="translate(81.26 0)">
+                                <path
+                                    d="M0-10.037c0-5.924,4.221-10.994,10.662-10.994,6.528,0,10.75,5.07,10.75,10.994S17.19.957,10.662.957C4.221.957,0-4.113,0-10.037m16.668,0c0-3.589-2.35-6.641-6.006-6.641-3.568,0-5.918,3.052-5.918,6.641S7.094-3.4,10.662-3.4c3.656,0,6.006-3.052,6.006-6.641"
+                                    transform="translate(0 21.031)" />
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+            </a>
+
+            <!-- Navigation Links -->
+            <ul class="nav__links">
+                <li><a href="#" aria-label="About Us">About</a></li>
+                <li><a href="#" aria-label="Meet Our Team">Our Team</a></li>
+                <li>
+                    <a href="#" aria-label="Our Services">
+                        <span>Services</span>
+                        <svg class="chevron-icon" xmlns="http://www.w3.org/2000/svg" width="12.708" height="7.768"
+                            viewBox="0 0 12.708 7.768" aria-hidden="true">
+                            <path d="M5,5l4.94,4.94L14.88,5" transform="translate(-3.586 -3.586)" fill="none"
+                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                        </svg>
+                    </a>
+                </li>
+                <li><a href="#" aria-label="Latest News">News</a></li>
+                <li><a href="#" aria-label="Upcoming Events">Events</a></li>
+            </ul>
+
+            <!-- Nav Right (Search and Contact) -->
+            <div class="nav__right">
+                <button class="search-button" aria-label="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17.107" height="17.05" viewBox="0 0 17.107 17.05">
+                        <path
+                            d="M118.082,240.344a1.1,1.1,0,0,1,.187.125q1.7,1.7,3.4,3.4a.663.663,0,1,1-.927.944q-1.069-1.06-2.13-2.128c-.477-.478-.953-.957-1.438-1.444a6.892,6.892,0,0,1-9.95-1.2,6.926,6.926,0,1,1,10.857.3Zm-5.3,1.163a5.594,5.594,0,1,0-5.6-5.6A5.61,5.61,0,0,0,112.783,241.507Z"
+                            transform="translate(-105.342 -228.489)" fill="#fff" stroke="#fff" stroke-width="1" />
+                    </svg> </button>
+                <a href="#" class="contact-link">
+                    <span>Contact us</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16.828" viewBox="0 0 16 16.828">
+                        <g transform="translate(15 15.414) rotate(180)">
+                            <path d="M7,14,0,7,7,0" transform="translate(0)" fill="none" stroke="#fff"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                            <path d="M14,0H0" transform="translate(0 7)" fill="none" stroke="#fff"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                        </g>
+                    </svg> </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="menu-button" aria-label="Menu">
+                <div class="menu-bar"></div>
+                <div class="menu-bar"></div>
+                <div class="menu-bar"></div>
+            </button>
+
+            <!-- Dropdown Menu for Services -->
+            <div class="services-dropdown" id="services-dropdown">
+                <div class="dropdown-content">
+                    <button class="return-button" aria-label="Return">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16.828" viewBox="0 0 16 16.828">
+                            <g transform="translate(15 15.414) rotate(180)">
+                                <path d="M7,14,0,7,7,0" transform="translate(0)" fill="none" stroke="black"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                <path d="M14,0H0" transform="translate(0 7)" fill="none" stroke="black"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                            </g>
+                        </svg>
+
+                    </button>
+
+                    <ul class="dropdown-list">
+                        <li><a href="#" aria-label="Web Development">Web Development</a></li>
+                        <li><a href="#" aria-label="Graphic Design">Graphic Design</a></li>
+                        <li><a href="#" aria-label="Digital Marketing">Digital Marketing</a></li>
+                        <li><a href="#" aria-label="SEO Services">SEO Services</a></li>
+                    </ul>
+
+                    <figure class="dropdown-image">
+                        <img src="./assets/images/servicesimage.png" alt="Services Image" />
+                        <figcaption>
+                            <p class="dropdown-header">Header here</p>
+                            <p class="dropdown-subheader">With a sub line here</p>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Banner Section -->
+    <main class="banner" role="main">
+        <section class="banner__wrapper" aria-label="Promotional Banners">
+            <div class="banner__content active" role="tabpanel">
+                <h1>This is our</h1>
+                <h2>Main Header</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque fermentum libero velit,
+                    sit
+                    amet
+                    suscipit mauris elementum id. Praesent interdum a ante ut dapibus.</p>
+
+                <button class="cta-button" aria-label="Find out more">
+                    <p>Find out more</p>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16.828" viewBox="0 0 16 16.828">
+                            <g transform="translate(15 15.414) rotate(180)">
+                                <path d="M7,14,0,7,7,0" transform="translate(0)" fill="none" stroke="black"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                <path d="M14,0H0" transform="translate(0 7)" fill="none" stroke="black"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                            </g>
+                        </svg>
+
+                    </span>
+                </button>
+
+            </div>
+
+            <div class="banner__content" role="tabpanel">
+                <h1>And this is a</h1>
+                <h2>Second Header</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque fermentum libero velit,
+                    sit
+                    amet
+                    suscipit mauris elementum id. Praesent interdum a ante ut dapibus.</p>
+
+                <button class="cta-button" aria-label="Find out more">
+                    <p>Find out more</p>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16.828" viewBox="0 0 16 16.828">
+                            <g transform="translate(15 15.414) rotate(180)">
+                                <path d="M7,14,0,7,7,0" transform="translate(0)" fill="none" stroke="black"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                <path d="M14,0H0" transform="translate(0 7)" fill="none" stroke="black"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                            </g>
+                        </svg>
+
+                    </span>
+                </button>
+            </div>
+
+            </div>
+
+            <!-- banner indicators -->
+            <div class="banner__indicators" role="tablist">
+                <button class="indicator" role="button" aria-label="Go to slide 1"></button>
+                <button class="indicator" role="button" aria-label="Go to slide 2"></button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js" type="text/javascript"></script>
+</body>
+
+</html>
