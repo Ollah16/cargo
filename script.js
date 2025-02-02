@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Query all required elements once
     const elements = {
         menuButton: document.querySelector('.menu-button'),
         logo: document.querySelector('.nav__logo svg'),
@@ -14,8 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         returnButton: document.querySelector('.return-button')
     };
 
-    // Check if all elements exist
-    if (Object.values(elements).some(el => !el || (el instanceof NodeList && el.length === 0))) {
+    if (Object.values(elements).some(el => !el || (NodeList.prototype.isPrototypeOf(el) && !el.length))) {
         console.error('One or more elements not found');
         return;
     }
@@ -31,10 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalSlides = slides.length;
     let interval;
 
-    // Helper function to toggle a class on an element
-    const toggleClass = (element, className) => element.classList.toggle(className);
+    const toggleClass = (element, className) => {
+        element.classList.toggle(className);
+    };
 
-    // Show specific slide based on index
     const showSlide = (index) => {
         slides.forEach((slide, i) => {
             slide.classList.toggle('active', i === index);
@@ -43,21 +41,19 @@ document.addEventListener('DOMContentLoaded', () => {
         bannerWrapper.style.backgroundImage = backgrounds[index];
     };
 
-    // Show next slide
     const nextSlide = () => {
         currentIndex = (currentIndex + 1) % totalSlides;
         showSlide(currentIndex);
     };
 
-    // Start auto slide transition
     const startAutoSlide = () => {
         interval = setInterval(nextSlide, 10000); // Change slide every 10s
     };
 
-    // Stop auto slide transition
-    const stopAutoSlide = () => clearInterval(interval);
+    const stopAutoSlide = () => {
+        clearInterval(interval);
+    };
 
-    // Optimized debounce function
     const debounce = (func, wait) => {
         let timeout;
         return (...args) => {
@@ -66,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
-    // Handle navbar color change on scroll
     const handleScroll = () => {
         const isServicesActive = servicesListItem.classList.contains('active');
         const isScrolled = !isServicesActive && window.innerWidth > 768 && window.scrollY > (navbar.offsetHeight / 2);
@@ -75,15 +70,15 @@ document.addEventListener('DOMContentLoaded', () => {
         logo.style.fill = isScrolled ? 'white' : '';
     };
 
-    // Use debounced scroll handler
     const debouncedHandleScroll = debounce(handleScroll, 10);
 
-    // Menu button click handler
     menuButton.addEventListener('click', () => {
+        let isActive
         toggleClass(menuButton, 'active');
         toggleClass(navLinks, 'active');
         toggleClass(navContainer, 'active');
-        if (!menuButton.classList.contains('active')) {
+        isActive = menuButton.classList.contains('active');
+        if (!isActive) {
             navLinks.classList.remove('active');
             serviceDropdown.classList.remove('active');
             servicesListItem.classList.remove('active');
@@ -91,17 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Return button click handler
     returnButton.addEventListener('click', () => {
         toggleClass(serviceDropdown, 'active');
         toggleClass(servicesListItem, 'active');
         navLinks.style.left = '0';
     });
 
-    // Scroll event listener (with passive true for performance)
-    window.addEventListener('scroll', debouncedHandleScroll, { passive: true });
+    window.addEventListener('scroll', debouncedHandleScroll);
 
-    // Handle clicks in navLinks
     navLinks.addEventListener('click', (event) => {
         const clickedElement = event.target.closest('li');
         if (!clickedElement) return;
@@ -119,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Window resize handler (close all open menus)
     window.addEventListener('resize', () => {
         navLinks.classList.remove('active');
         serviceDropdown.classList.remove('active');
@@ -128,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.style.left = '';
     });
 
-    // Indicator click handlers
     indicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
             currentIndex = index;
@@ -136,11 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Hover effects to stop/start auto slide
     bannerWrapper.addEventListener('mouseenter', stopAutoSlide);
     bannerWrapper.addEventListener('mouseleave', startAutoSlide);
 
-    // Initialize first slide and start auto slide
+    // Initialize
     showSlide(currentIndex);
     startAutoSlide();
 });
