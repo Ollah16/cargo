@@ -160,6 +160,7 @@ body {
     background-color: #FFFFFF;
     padding: 1.25rem;
     z-index: -1;
+    overflow: auto;
     transition: top var(--transition-duration) ease, left var(--transition-duration) ease;
 }
 
@@ -365,13 +366,7 @@ figure p:last-of-type {
 
 /* Responsive Design */
 
-@media (min-width: 51.25rem) {
-    .banner__wrapper {
-        background-position: 80% center;
-    }
-}
-
-@media (min-width: 48rem) {
+@media (min-width: 769px) {
     .services-dropdown {
         right: 0;
         left: 0;
@@ -381,11 +376,23 @@ figure p:last-of-type {
     }
 
     .services-dropdown.active {
-        top: 4.8125rem;
+        top: 4.775rem;
     }
 }
 
-@media (max-width: 48rem) {
+@media (min-width: 1200px) {
+    .banner__wrapper {
+        background-position: top;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    .banner__wrapper {
+        background-position: 80% center;
+    }
+}
+
+@media (max-width: 768px) {
     .nav-container {
         border-bottom: 0.0625rem solid #808E9B;
         padding: 0.625rem;
@@ -401,7 +408,7 @@ figure p:last-of-type {
         position: absolute;
         top: -100vh;
         left: 0;
-        height: calc(100vh - 3.75rem);
+        height: calc(100vh - 4.075rem);
         padding: 0;
         z-index: -1;
         transition: top var(--transition-duration) ease, left var(--transition-duration) ease;
@@ -412,7 +419,7 @@ figure p:last-of-type {
     }
 
     .nav__links.active {
-        top: 3.75rem;
+        top: 4.075rem;
     }
 
     .nav__links li {
@@ -451,9 +458,9 @@ figure p:last-of-type {
 
     .services-dropdown {
         left: 100vw;
-        top: 3.75rem;
+        top: 4.075rem;
         bottom: 0;
-        height: calc(100vh - 3.75rem);
+        height: calc(100vh - 4.075rem);
         width: 100%;
     }
 
@@ -515,7 +522,16 @@ figure p:last-of-type {
     }
 }
 
-@media (max-width: 36rem) {
+@media (max-width: 576px) {
+
+    .nav__links {
+        height: calc(100vh - 3.8rem);
+    }
+
+    .nav__links.active {
+        top: 3.8rem
+    }
+
     .search-button {
         margin-right: 0.3125rem;
     }
@@ -523,6 +539,14 @@ figure p:last-of-type {
     .contact-link {
         padding: 0.75rem;
         max-height: 2.5rem;
+    }
+
+    .services-dropdown {
+        height: calc(100vh - 3.8rem);
+    }
+
+    .services-dropdown.active {
+        top: 3.8rem;
     }
 
     .banner h1 {
