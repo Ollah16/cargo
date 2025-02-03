@@ -40,7 +40,7 @@ body {
     padding: 1rem 1.25rem;
     max-width: 105rem;
     margin: 0 auto;
-    background-color: inherit;
+    background: inherit;
 }
 
 .nav__logo {
@@ -259,7 +259,7 @@ figure p:last-of-type {
     background-size: cover;
     background-position: top;
     color: var(--text-color);
-    transition: background 1s ease-in-out;
+    transition: background 3s ease-in-out;
 }
 
 .banner__content {

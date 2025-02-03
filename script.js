@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Use debounced scroll handler
-    const debouncedHandleScroll = debounce(handleScroll, 300);
+    const debouncedHandleScroll = debounce(handleScroll, 10);
 
     // Menu button click handler
     menuButton.addEventListener('click', () => {
