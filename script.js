@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Use debounced scroll handler
-    const debouncedHandleScroll = debounce(handleScroll, 10);
+    const debouncedHandleScroll = debounce(handleScroll, 300);
 
     // Menu button click handler
     menuButton.addEventListener('click', () => {
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
             debouncedHandleScroll();
             const isActive = servicesListItem.classList.toggle('active');
             serviceDropdown.classList.toggle('active', isActive);
-            navLinks.style.left = isActive ? '' : '-100vw';
+            navLinks.style.left = isActive ? '-100vw' : '';
         } else {
             servicesListItem.classList.remove('active');
             serviceDropdown.classList.remove('active');

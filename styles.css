@@ -36,11 +36,11 @@ body {
 .nav-container {
     display: flex;
     justify-content: space-between;
-    background-color: inherit;
     align-items: center;
     padding: 1rem 1.25rem;
     max-width: 105rem;
     margin: 0 auto;
+    background-color: inherit;
 }
 
 .nav__logo {
@@ -93,7 +93,8 @@ body {
     transition: transform var(--transition-duration) ease;
 }
 
-.nav__links a:hover .chevron-icon {
+.nav__links a:hover .chevron-icon,
+.nav__links li.active .chevron-icon {
     stroke: var(--secondary-color);
 }
 
@@ -365,13 +366,11 @@ figure p:last-of-type {
 }
 
 /* Responsive Design */
-
 @media (min-width: 769px) {
     .services-dropdown {
         right: 0;
         left: 0;
         top: -100vh;
-        z-index: -1;
         border-top: 0.0625rem solid black;
     }
 
@@ -458,9 +457,7 @@ figure p:last-of-type {
 
     .services-dropdown {
         left: 100vw;
-        top: 4.075rem;
         bottom: 0;
-        height: calc(100vh - 4.075rem);
         width: 100%;
     }
 
@@ -522,14 +519,20 @@ figure p:last-of-type {
     }
 }
 
-@media (max-width: 576px) {
+@media (min-width: 577px) and (max-width: 768px) {
+    .services-dropdown {
+        top: 4.075rem;
+        height: calc(100vh - 4.075rem);
+    }
+}
 
+@media (max-width: 576px) {
     .nav__links {
         height: calc(100vh - 3.8rem);
     }
 
     .nav__links.active {
-        top: 3.8rem
+        top: 3.8rem;
     }
 
     .search-button {
@@ -542,11 +545,8 @@ figure p:last-of-type {
     }
 
     .services-dropdown {
-        height: calc(100vh - 3.8rem);
-    }
-
-    .services-dropdown.active {
         top: 3.8rem;
+        height: calc(100vh - 3.8rem);
     }
 
     .banner h1 {
