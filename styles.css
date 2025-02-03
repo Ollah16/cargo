@@ -193,7 +193,7 @@ body {
     color: var(--secondary-color);
 }
 
-.return-button {
+.close-services {
     display: none;
 }
 
@@ -458,7 +458,7 @@ figure p:last-of-type {
         position: relative;
     }
 
-    .return-button {
+    .close-services {
         display: block;
         top: -35px;
         position: absolute;
