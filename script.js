@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         serviceDropdown: document.querySelector('.services-dropdown'),
         navbar: document.querySelector('.sticky-nav'),
         navContainer: document.querySelector('.nav-container'),
-        closeServiceButton: document.querySelector('.close-services')
+        closeServiceDropdown: document.querySelector('.close-services')
     };
 
     if (Object.values(elements).some(el => !el || (NodeList.prototype.isPrototypeOf(el) && !el.length))) {
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    const { menuButton, logo, navLinks, bannerWrapper, slides, indicators, servicesListItem, serviceDropdown, navbar, navContainer, closeServiceButton } = elements;
+    const { menuButton, logo, navLinks, bannerWrapper, slides, indicators, servicesListItem, serviceDropdown, navbar, navContainer, closeServiceDropdown } = elements;
 
     const backgrounds = [
         "url('./assets/images/homeslide1.png')",
@@ -29,107 +29,72 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalSlides = slides.length;
     let interval;
 
-    const toggleClass = (element, className) => {
-        element.classList.toggle(className);
-    };
+    const toggleClass = (element, className, force) => element.classList.toggle(className, force);
 
-    // Show specific slide based on index
     const showSlide = (index) => {
         slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === index);
-            indicators[i].classList.toggle('active', i === index);
+            toggleClass(slide, 'active', i === index)
+            toggleClass(indicators[i], 'active', i === index)
         });
         bannerWrapper.style.backgroundImage = backgrounds[index];
     };
 
-    // Show next slide
     const nextSlide = () => {
         currentIndex = (currentIndex + 1) % totalSlides;
         showSlide(currentIndex);
     };
 
-    // Start auto slide transition
     const startAutoSlide = () => {
         interval = setInterval(nextSlide, 10000);
     };
 
-    // Stop auto slide transition
     const stopAutoSlide = () => {
         clearInterval(interval);
     };
 
-    // Optimized debounce function
-    const debounce = (func, wait) => {
-        let timeout;
-        return (...args) => {
-            clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(this, args), wait);
-        };
-    };
-
-    // Handle navbar color change on scroll
-    const handleScroll = () => {
-        const isServicesActive = servicesListItem.classList.contains('active');
-        const isScrolled = !isServicesActive && window.innerWidth > 768 && window.scrollY > (navbar.offsetHeight / 2);
-        navbar.style.backgroundColor = isScrolled ? 'transparent' : '';
-        navbar.style.color = isScrolled ? 'white' : '';
-        logo.style.fill = isScrolled ? 'white' : '';
-    };
-
-    // Use debounced scroll handler
-    const debouncedHandleScroll = debounce(handleScroll, 10);
-
-    // Menu button click handler
+    // Toggles the navigation links on mobile
     menuButton.addEventListener('click', () => {
-        toggleClass(menuButton, 'active');
-        toggleClass(navLinks, 'active');
-        toggleClass(navContainer, 'active');
-        if (!menuButton.classList.contains('active')) {
-            navLinks.classList.remove('active');
-            serviceDropdown.classList.remove('active');
-            servicesListItem.classList.remove('active');
+        const isActive = toggleClass(menuButton, 'active');
+        toggleClass(navLinks, 'active', isActive);
+        toggleClass(navContainer, 'active', isActive);
+
+        if (!isActive) {
+            toggleClass(serviceDropdown, 'active', isActive);
+            toggleClass(servicesListItem, 'active', isActive);
             navLinks.style.left = '0';
         }
     });
 
-    // Close services dropdown
-    closeServiceButton.addEventListener('click', () => {
-        toggleClass(serviceDropdown, 'active');
-        toggleClass(servicesListItem, 'active');
-        navLinks.style.left = '0';
+    // Toggles the service dropdown menu
+    servicesListItem.addEventListener('click', (event) => {
+        event.preventDefault();
+        const isServiceActive = toggleClass(servicesListItem, 'active');
+        toggleClass(serviceDropdown, 'active', isServiceActive);
+        navLinks.style.left = isServiceActive && window.innerWidth < 769 ? '-100vw' : '0';
     });
 
-    // Scroll event listener (with passive true for performance)
-    window.addEventListener('scroll', debouncedHandleScroll, { passive: true });
-
-    // Handle clicks in navLinks
-    navLinks.addEventListener('click', (event) => {
-        const clickedElement = event.target.closest('li');
-        if (!clickedElement) return;
-
-        if (clickedElement === servicesListItem) {
-            event.preventDefault();
-            debouncedHandleScroll();
-            const isActive = servicesListItem.classList.toggle('active');
-            serviceDropdown.classList.toggle('active', isActive);
-            navLinks.style.left = isActive ? '-100vw' : '';
-        } else {
-            servicesListItem.classList.remove('active');
-            serviceDropdown.classList.remove('active');
-            navLinks.style.left = '';
+    // Closes the service dropdown when the mouse leaves on desktop
+    serviceDropdown.addEventListener('mouseleave', () => {
+        if (window.innerWidth >= 769) {
+            toggleClass(serviceDropdown, 'active', false);
+            toggleClass(servicesListItem, 'active', false);
         }
     });
 
-    // Window resize handler (close all open menus)
-    window.addEventListener('resize', () => {
-        navLinks.classList.remove('active');
-        serviceDropdown.classList.remove('active');
-        servicesListItem.classList.remove('active');
-        menuButton.classList.remove('active');
-        navLinks.style.left = '';
+    // Closes the service dropdown menu on mobile
+    closeServiceDropdown.addEventListener('click', () => {
+        toggleClass(serviceDropdown, 'active', false);
+        toggleClass(servicesListItem, 'active', false);
+        navLinks.style.left = '0';
     });
 
-    // Indicator click handlers
+    window.addEventListener('resize', () => {
+        toggleClass(navLinks, 'active', false);
+        toggleClass(serviceDropdown, 'active', false);
+        toggleClass(servicesListItem, 'active', false);
+        toggleClass(menuButton, 'active', false);
+    });
+
     indicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
             currentIndex = index;
@@ -137,11 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Hover effects to stop/start auto slide
     bannerWrapper.addEventListener('mouseenter', stopAutoSlide);
     bannerWrapper.addEventListener('mouseleave', startAutoSlide);
 
-    // Initialize
     showSlide(currentIndex);
     startAutoSlide();
 });
