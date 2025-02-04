@@ -1,14 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     const elements = {
         menuButton: document.querySelector('.menu-button'),
-        logo: document.querySelector('.nav__logo svg'),
         navLinks: document.querySelector('.nav__links'),
         bannerWrapper: document.querySelector('.banner__wrapper'),
         slides: document.querySelectorAll('.banner__content'),
         indicators: document.querySelectorAll('.indicator'),
         servicesListItem: document.querySelector('.nav__links li:nth-child(3)'),
         serviceDropdown: document.querySelector('.services-dropdown'),
-        navbar: document.querySelector('.sticky-nav'),
         navContainer: document.querySelector('.nav-container'),
         closeServiceDropdown: document.querySelector('.close-services')
     };
@@ -18,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    const { menuButton, logo, navLinks, bannerWrapper, slides, indicators, servicesListItem, serviceDropdown, navbar, navContainer, closeServiceDropdown } = elements;
+    const { menuButton, navLinks, bannerWrapper, slides, indicators, servicesListItem, serviceDropdown, navContainer, closeServiceDropdown } = elements;
 
     const backgrounds = [
         "url('./assets/images/homeslide1.png')",
