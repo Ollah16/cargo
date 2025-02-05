@@ -20,17 +20,21 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     font-size: 16px;
+    min-height: 100vh;
+    overflow: auto;
 }
 
 /* Sticky Navigation Bar */
 .sticky-nav {
-    position: sticky;
+    position: fixed;
+    left: 0;
+    right: 0;
     top: 0;
-    background-color: #FFFFFF;
-    color: var(--primary-color);
+    color: var(--text-color);
+    background-color: transparent;
     z-index: 1000;
     contain: layout;
-    transition: background-color var(--transition-duration) ease;
+    transition: background-color var(--transition-duration) ease, position var(--transition-duration) ease var(--transition-duration);
 }
 
 .nav-container {
@@ -53,7 +57,7 @@ body {
 }
 
 .nav__logo svg {
-    fill: var(--primary-color);
+    fill: var(--text-color);
     transition: fill var(--transition-duration) ease;
 }
 
@@ -67,6 +71,7 @@ body {
 
 .nav__links li {
     margin-left: 1.25rem;
+    color: inherit;
 }
 
 .nav__links a {
@@ -150,9 +155,9 @@ body {
 .menu-bar {
     width: 1.5625rem;
     height: 0.1875rem;
-    background-color: var(--primary-color);
+    background-color: var(--text-color);
     position: relative;
-    transition: transform var(--transition-duration) ease, opacity var(--transition-duration) ease;
+    transition: transform var(--transition-duration) ease, opacity var(--transition-duration) ease, background-color var(--transition-duration) ease;
 }
 
 /* Dropdown Menu */
@@ -231,7 +236,7 @@ figure p:last-of-type {
 .banner {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: calc(100vh + 4.8125rem);
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -366,7 +371,7 @@ figure p:last-of-type {
 }
 
 /* Responsive Design */
-@media (min-width: 769px) {
+@media (min-width: 768px) {
     .services-dropdown {
         right: 0;
         left: 0;
@@ -386,15 +391,15 @@ figure p:last-of-type {
 
 }
 
-@media (min-width: 768px) and (max-width: 1199px) {
+@media (min-width: 767px) and (max-width: 1199px) {
     .banner__wrapper {
         background-position: 80% center;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .nav-container {
-        border-bottom: 0.0625rem solid #808E9B;
+        border-bottom: 0px solid #808E9B;
         padding: 0.625rem;
     }
 
@@ -416,6 +421,7 @@ figure p:last-of-type {
 
     .nav__links a {
         font-size: 1.8rem;
+        color: var(--primary-color);
     }
 
     .nav__links.active {
@@ -520,7 +526,7 @@ figure p:last-of-type {
     }
 }
 
-@media (min-width: 577px) and (max-width: 768px) {
+@media (min-width: 577px) and (max-width: 767px) {
     .services-dropdown {
         top: 4.075rem;
         height: calc(100vh - 4.075rem);

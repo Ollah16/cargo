@@ -1,14 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     const elements = {
         menuButton: document.querySelector('.menu-button'),
+        logo: document.querySelector('.nav__logo svg'),
         navLinks: document.querySelector('.nav__links'),
         bannerWrapper: document.querySelector('.banner__wrapper'),
         slides: document.querySelectorAll('.banner__content'),
         indicators: document.querySelectorAll('.indicator'),
         servicesListItem: document.querySelector('.nav__links li:nth-child(3)'),
         serviceDropdown: document.querySelector('.services-dropdown'),
+        navbar: document.querySelector('.sticky-nav'),
         navContainer: document.querySelector('.nav-container'),
-        closeServiceDropdown: document.querySelector('.close-services')
+        closeServiceDropdown: document.querySelector('.close-services'),
+        menuBar: document.querySelectorAll('.menu-bar')
     };
 
     if (Object.values(elements).some(el => !el || (NodeList.prototype.isPrototypeOf(el) && !el.length))) {
@@ -16,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    const { menuButton, navLinks, bannerWrapper, slides, indicators, servicesListItem, serviceDropdown, navContainer, closeServiceDropdown } = elements;
+    const { menuButton, menuBar, logo, navLinks, bannerWrapper, slides, indicators, servicesListItem, serviceDropdown, navbar, navContainer, closeServiceDropdown } = elements;
 
     const backgrounds = [
         "url('./assets/images/homeslide1.png')",
@@ -50,11 +53,54 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(interval);
     };
 
+    // Optimized debounce function
+    const debounce = (func, wait) => {
+        let timeout;
+        return (...args) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+    };
+
+    const handleScroll = () => {
+        if (servicesListItem.classList.contains('active') || menuButton.classList.contains('active')) return;
+
+        const isScrolled = window.scrollY > 0;
+
+        navbar.style.position = isScrolled ? 'sticky' : '';
+        navbar.style.backgroundColor = isScrolled ? 'white' : 'transparent';
+        navbar.style.color = isScrolled ? '#05172D' : '#FFFFFF';
+
+        menuBar.forEach(bar => {
+            bar.style.backgroundColor = isScrolled ? '#05172D' : 'white';
+        });
+
+        logo.style.fill = isScrolled ? '#05172D' : '#FFFFFF';
+    };
+
+    // Use debounced scroll handler
+    const debouncedHandleScroll = debounce(handleScroll, 10);
+
+    // Scroll event listener (with passive true for performance)
+    window.addEventListener('scroll', debouncedHandleScroll, { passive: true });
+
     // Toggles the navigation links on mobile
     menuButton.addEventListener('click', () => {
         const isActive = toggleClass(menuButton, 'active');
         toggleClass(navLinks, 'active', isActive);
         toggleClass(navContainer, 'active', isActive);
+
+
+        navbar.style.position = isActive ? 'sticky' : '';
+        navbar.style.backgroundColor = isActive ? 'white' : 'transparent';
+        navbar.style.color = isActive ? '#05172D' : '#FFFFFF';
+        navbar.style.borderBottom = isActive ? '0.0625rem' : '0';
+
+        menuBar.forEach(bar => {
+            bar.style.backgroundColor = isActive ? '#05172D' : 'white';
+        });
+
+        logo.style.fill = isActive ? '#05172D' : '#FFFFFF';
 
         if (!isActive) {
             toggleClass(serviceDropdown, 'active', isActive);
@@ -66,16 +112,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Toggles the service dropdown menu
     servicesListItem.addEventListener('click', (event) => {
         event.preventDefault();
+
         const isServiceActive = toggleClass(servicesListItem, 'active');
         toggleClass(serviceDropdown, 'active', isServiceActive);
-        navLinks.style.left = isServiceActive && window.innerWidth < 769 ? '-100vw' : '0';
+
+        const isDesktop = window.innerWidth > 769;
+
+        navbar.style.backgroundColor = isServiceActive ? 'white' : '';
+        navbar.style.color = isServiceActive ? '#05172D' : '';
+
+        logo.style.fill = isServiceActive ? '#05172D' : '';
+        navLinks.style.left = isServiceActive && !isDesktop ? '-100vw' : '0';
     });
 
     // Closes the service dropdown when the mouse leaves on desktop
     serviceDropdown.addEventListener('mouseleave', () => {
-        if (window.innerWidth >= 769) {
+        if (window.innerWidth >= 768) {
             toggleClass(serviceDropdown, 'active', false);
             toggleClass(servicesListItem, 'active', false);
+
+            const isScrolled = window.scrollY > 0;
+            Object.assign(navbar.style, {
+                backgroundColor: isScrolled ? 'white' : '',
+                color: isScrolled ? '#05172D' : '',
+            });
+
+            logo.style.fill = isScrolled ? '#05172D' : '';
         }
     });
 
