@@ -6,7 +6,7 @@
     --background-color: #00172D;
     --text-color: #FFFFFF;
     --hover-color: #E0D410;
-    --transition-duration: 0.3s;
+    --transition-duration: 0.5s;
 }
 
 /* General Styles */
@@ -21,7 +21,6 @@ body {
     font-family: Arial, sans-serif;
     font-size: 16px;
     min-height: 100vh;
-    overflow: auto;
 }
 
 /* Sticky Navigation Bar */
@@ -34,7 +33,7 @@ body {
     background-color: transparent;
     z-index: 1000;
     contain: layout;
-    transition: background-color var(--transition-duration) ease, position var(--transition-duration) ease var(--transition-duration);
+    transition: background-color var(--transition-duration) ease, position var(--transition-duration) ease;
 }
 
 .nav-container {
