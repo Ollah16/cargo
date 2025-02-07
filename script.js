@@ -105,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleClass(servicesListItem, 'active', isActive);
             navLinks.style.left = '0';
         }
+        debouncedHandleScroll()
     });
 
     // Toggles the service dropdown menu
@@ -121,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         logo.style.fill = isServiceActive ? '#05172D' : '';
         navLinks.style.left = isServiceActive && !isDesktop ? '-100vw' : '0';
+        debouncedHandleScroll()
     });
 
     // Closes the service dropdown when the mouse leaves on desktop
