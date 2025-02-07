@@ -101,8 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
         logo.style.fill = isActive ? '#05172D' : '#FFFFFF';
 
         if (!isActive) {
-            toggleClass(serviceDropdown, 'active', isActive);
-            toggleClass(servicesListItem, 'active', isActive);
+            toggleClass(serviceDropdown, 'active', false);
+            toggleClass(servicesListItem, 'active', false);
             navLinks.style.left = '0';
         }
         debouncedHandleScroll()
