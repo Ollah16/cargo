@@ -66,8 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (servicesListItem.classList.contains('active') || menuButton.classList.contains('active')) return;
 
         const isScrolled = window.scrollY > 0;
-
-        navbar.style.position = isScrolled ? 'sticky' : '';
         navbar.style.backgroundColor = isScrolled ? 'white' : 'transparent';
         navbar.style.color = isScrolled ? '#05172D' : '#FFFFFF';
 

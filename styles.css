@@ -33,7 +33,7 @@ body {
     background-color: transparent;
     z-index: 1000;
     contain: layout;
-    transition: background-color var(--transition-duration) ease, position var(--transition-duration) ease;
+    transition: background-color var(--transition-duration) ease;
 }
 
 .nav-container {
