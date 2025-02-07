@@ -274,7 +274,7 @@ figure p:last-of-type {
     text-align: start;
     opacity: 0;
     z-index: 2;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 3s ease-in-out;
 }
 
 .banner__content.active {
