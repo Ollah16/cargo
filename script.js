@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Closes the service dropdown when the mouse leaves on desktop
     serviceDropdown.addEventListener('mouseleave', () => {
-        if (window.innerWidth >= 768) {
+        if (window.innerWidth > 769) {
             toggleClass(serviceDropdown, 'active', false);
             toggleClass(servicesListItem, 'active', false);
 
