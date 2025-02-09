@@ -146,12 +146,12 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.style.left = '0';
     });
 
-    // window.addEventListener('resize', () => {
-    //     toggleClass(navLinks, 'active', false);
-    //     toggleClass(serviceDropdown, 'active', false);
-    //     toggleClass(servicesListItem, 'active', false);
-    //     toggleClass(menuButton, 'active', false);
-    // });
+    window.addEventListener('resize', () => {
+        toggleClass(navLinks, 'active', false);
+        toggleClass(serviceDropdown, 'active', false);
+        toggleClass(servicesListItem, 'active', false);
+        toggleClass(menuButton, 'active', false);
+    });
 
     indicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
