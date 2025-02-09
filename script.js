@@ -99,10 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
         logo.style.fill = isActive ? '#05172D' : '#FFFFFF';
 
         if (!isActive) {
-            serviceDropdown.classList.remove('active')
-            servicesListItem.classList.remove('active')
-            // toggleClass(serviceDropdown, 'active', isActive);
-            // toggleClass(servicesListItem, 'active', isActive);
+            toggleClass(serviceDropdown, 'active', isActive);
+            toggleClass(servicesListItem, 'active', isActive);
             navLinks.style.left = '0';
         }
         debouncedHandleScroll()
@@ -128,11 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Closes the service dropdown when the mouse leaves on desktop
     serviceDropdown.addEventListener('mouseleave', () => {
         if (window.innerWidth > 769) {
-            // toggleClass(serviceDropdown, 'active', false);
-            // toggleClass(servicesListItem, 'active', false);
-
-            serviceDropdown.classList.remove('active')
-            servicesListItem.classList.remove('active')
+            toggleClass(serviceDropdown, 'active', false);
+            toggleClass(servicesListItem, 'active', false);
 
             const isScrolled = window.scrollY > 0;
             Object.assign(navbar.style, {
@@ -151,12 +146,12 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.style.left = '0';
     });
 
-    window.addEventListener('resize', () => {
-        toggleClass(navLinks, 'active', false);
-        toggleClass(serviceDropdown, 'active', false);
-        toggleClass(servicesListItem, 'active', false);
-        toggleClass(menuButton, 'active', false);
-    });
+    // window.addEventListener('resize', () => {
+    //     toggleClass(navLinks, 'active', false);
+    //     toggleClass(serviceDropdown, 'active', false);
+    //     toggleClass(servicesListItem, 'active', false);
+    //     toggleClass(menuButton, 'active', false);
+    // });
 
     indicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
