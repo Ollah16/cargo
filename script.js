@@ -88,8 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleClass(navLinks, 'active', isActive);
         toggleClass(navContainer, 'active', isActive);
 
-
-        navbar.style.position = isActive ? 'sticky' : '';
         navbar.style.backgroundColor = isActive ? 'white' : 'transparent';
         navbar.style.color = isActive ? '#05172D' : '#FFFFFF';
         navbar.style.borderBottom = isActive ? '0.0625rem' : '0';
@@ -101,8 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
         logo.style.fill = isActive ? '#05172D' : '#FFFFFF';
 
         if (!isActive) {
-            toggleClass(serviceDropdown, 'active', isActive);
-            toggleClass(servicesListItem, 'active', isActive);
+            serviceDropdown.classList.remove('active')
+            servicesListItem.classList.remove('active')
+            // toggleClass(serviceDropdown, 'active', isActive);
+            // toggleClass(servicesListItem, 'active', isActive);
             navLinks.style.left = '0';
         }
         debouncedHandleScroll()
@@ -128,8 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Closes the service dropdown when the mouse leaves on desktop
     serviceDropdown.addEventListener('mouseleave', () => {
         if (window.innerWidth > 769) {
-            toggleClass(serviceDropdown, 'active', false);
-            toggleClass(servicesListItem, 'active', false);
+            // toggleClass(serviceDropdown, 'active', false);
+            // toggleClass(servicesListItem, 'active', false);
+
+            serviceDropdown.classList.remove('active')
+            servicesListItem.classList.remove('active')
 
             const isScrolled = window.scrollY > 0;
             Object.assign(navbar.style, {
